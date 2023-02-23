@@ -16,7 +16,8 @@ const postSchema = mongoose.Schema({
         default: new Date()
     }
 });
-
+// why we use model?
+// Models are responsible for creating and reading documents from the underlying MongoDB database.
 const PostMessage = mongoose.model('PostMessage', postSchema);
 
 export default PostMessage;
