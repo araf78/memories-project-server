@@ -2,11 +2,12 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import dotenv from "dotenv"
 
 import postRoutes from './routes/posts.js';
 
-
 const app = express();
+dotenv.config();
 // MVC pattern 
 
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -23,7 +24,7 @@ const CONNECTION_URL = 'mongodb://localhost:27017';
 const PORT = process.env.PORT || 5000;
 // const CONNECTION_URL = 'mongodb+srv://robot-memories:XicrG5MQQEpz2ELF@cluster0.3bc3ld9.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUniFiedTopology: true})
+mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUniFiedTopology: true})
 .then(() => app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
 .catch((error) => console.log(error.message))
 
